@@ -3,8 +3,8 @@ package Logica;
 import java.io.File;
 import java.util.Scanner;
 import java.util.Random;
-import static Logica.Funciones.Abrir_Notas;
-import static Logica.Funciones.FiltrarCategoria;
+//import static Logica.Funciones.Abrir_Notas;
+//import static Logica.Funciones.FiltrarCategoria;
 import static Logica.Funciones.Num_Notas;
 
 public class ObjetosDeDatos {
@@ -25,7 +25,7 @@ public class ObjetosDeDatos {
         }
         numero_de_notas = Num_Notas(ruta);
         Nota[] notas_anteriores = new Nota[numero_de_notas];
-        notas_anteriores = Abrir_Notas(numero_de_notas,ruta);
+        //notas_anteriores = Abrir_Notas(numero_de_notas,ruta);
         for (int i = 0; i < numero_de_notas; i++) {
             lista_notas.agregar(notas_anteriores[i]);
         }
@@ -41,7 +41,7 @@ public class ObjetosDeDatos {
         ListaDobleEnlazada lista_filtrada = new ListaDobleEnlazada();
         System.out.println("Categoria que quiere ver");
         Cat = leer.nextLine();
-        lista_filtrada= FiltrarCategoria(lista_notas, Cat);
+        //lista_filtrada= FiltrarCategoria(lista_notas, Cat);
         lista_filtrada.imprimir();
     }
     

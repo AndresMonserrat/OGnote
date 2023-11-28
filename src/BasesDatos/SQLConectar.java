@@ -5,6 +5,7 @@ package BasesDatos;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import Logica.Logicca;
+import Logica.Usuario;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -92,9 +93,23 @@ public class SQLConectar {
             if (filasAfectadas > 0) {
                 System.out.println("Persona agregada exitosamente.");
                 //se debe crear el usuario de tipo persona.
-               
+                try {
+                    int ID=0;
+                    String consulta = "SELECT ID FROM registro WHERE email =\""+correo+"\"";
+                    ResultSet resultSet = statement.executeQuery(consulta);
+                    if(resultSet.next()){
+                        ID = resultSet.getInt(1);
+                    }
+                    Usuario user = new Usuario();
+                    user.setID(ID);
+                    resultSet.close();
+                    
+                    
+                    
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-                
                 return true;
             } else {
                 System.out.println("No se pudo agregar la persona.");
