@@ -1,18 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package og;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import BasesDatos.SQLConectar;
+import Logica.Funciones;
+import Logica.Logicca;
+import Logica.Usuario;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
-/**
- *
- * @author camil
- */
 public class GUI_START extends javax.swing.JFrame {
+
+    private File archivoActual;
+    private String url;
 
     public GUI_START() {
         initComponents();
@@ -47,7 +57,7 @@ public class GUI_START extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        opcion_notas = new javax.swing.JButton();
+        BtnAbrirNotas = new javax.swing.JButton();
         opcion_user = new javax.swing.JButton();
         opcion_cal = new javax.swing.JButton();
         opcion_settings = new javax.swing.JButton();
@@ -67,7 +77,7 @@ public class GUI_START extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
+        BtnEntrarLogin = new javax.swing.JPanel();
         entrar = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -78,10 +88,18 @@ public class GUI_START extends javax.swing.JFrame {
         deco = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        PanelAbrirNotas = new javax.swing.JPanel();
         panel_notas = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TxtA_contentNota = new javax.swing.JTextArea();
+        Lbl_tituloNota = new javax.swing.JLabel();
+        Lbl_categoria = new javax.swing.JLabel();
+        BtnGuardarNota = new javax.swing.JButton();
+        BtnAbrirNota1 = new javax.swing.JButton();
+        BtnFiltrar = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jButton2 = new javax.swing.JButton();
+        Txt_categoria = new javax.swing.JTextField();
         panel_user = new javax.swing.JPanel();
         panel_cal = new javax.swing.JPanel();
         panel_opciones = new javax.swing.JPanel();
@@ -146,17 +164,17 @@ public class GUI_START extends javax.swing.JFrame {
 
         menu.add(showuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 190, 100));
 
-        opcion_notas.setBackground(new java.awt.Color(166, 195, 192));
-        opcion_notas.setForeground(new java.awt.Color(8, 59, 8));
-        opcion_notas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Sticky Notes_1.png"))); // NOI18N
-        opcion_notas.setText("Notas");
-        opcion_notas.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        opcion_notas.addActionListener(new java.awt.event.ActionListener() {
+        BtnAbrirNotas.setBackground(new java.awt.Color(166, 195, 192));
+        BtnAbrirNotas.setForeground(new java.awt.Color(8, 59, 8));
+        BtnAbrirNotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Sticky Notes_1.png"))); // NOI18N
+        BtnAbrirNotas.setText("Notas");
+        BtnAbrirNotas.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
+        BtnAbrirNotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opcion_notasActionPerformed(evt);
+                BtnAbrirNotasActionPerformed(evt);
             }
         });
-        menu.add(opcion_notas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 160, 40));
+        menu.add(BtnAbrirNotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 160, 40));
 
         opcion_user.setBackground(new java.awt.Color(166, 195, 192));
         opcion_user.setForeground(new java.awt.Color(8, 59, 8));
@@ -199,7 +217,7 @@ public class GUI_START extends javax.swing.JFrame {
         menu.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, -10, 210, 120));
 
         up_panel.add(menu);
-        menu.setBounds(0, 0, 210, 510);
+        menu.setBounds(0, 0, 220, 510);
 
         iniciar.setPreferredSize(new java.awt.Dimension(400, 0));
         iniciar.setLayout(null);
@@ -310,7 +328,7 @@ public class GUI_START extends javax.swing.JFrame {
         iniciar.add(jPanel5);
         jPanel5.setBounds(0, 168, 399, 150);
 
-        jPanel9.setPreferredSize(new java.awt.Dimension(400, 50));
+        BtnEntrarLogin.setPreferredSize(new java.awt.Dimension(400, 50));
 
         entrar.setText("ENTRAR");
         entrar.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -320,23 +338,24 @@ public class GUI_START extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        javax.swing.GroupLayout BtnEntrarLoginLayout = new javax.swing.GroupLayout(BtnEntrarLogin);
+        BtnEntrarLogin.setLayout(BtnEntrarLoginLayout);
+        BtnEntrarLoginLayout.setHorizontalGroup(
+            BtnEntrarLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnEntrarLoginLayout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addComponent(entrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        BtnEntrarLoginLayout.setVerticalGroup(
+            BtnEntrarLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnEntrarLoginLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(entrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(entrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        iniciar.add(jPanel9);
-        jPanel9.setBounds(0, 336, 400, 50);
+        iniciar.add(BtnEntrarLogin);
+        BtnEntrarLogin.setBounds(0, 336, 400, 50);
 
         jPanel10.setPreferredSize(new java.awt.Dimension(400, 50));
 
@@ -443,33 +462,119 @@ public class GUI_START extends javax.swing.JFrame {
         up_panel.add(deco);
         deco.setBounds(400, 0, 530, 510);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel1.setLayout(new java.awt.CardLayout());
+        PanelAbrirNotas.setBackground(new java.awt.Color(0, 153, 153));
+        PanelAbrirNotas.setLayout(new java.awt.CardLayout());
 
         panel_notas.setBackground(new java.awt.Color(0, 153, 153));
 
-        jTextPane1.setBackground(new java.awt.Color(0, 153, 153));
-        jTextPane1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jScrollPane1.setViewportView(jTextPane1);
+        TxtA_contentNota.setColumns(20);
+        TxtA_contentNota.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        TxtA_contentNota.setRows(5);
+        jScrollPane2.setViewportView(TxtA_contentNota);
+
+        Lbl_tituloNota.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 14)); // NOI18N
+
+        Lbl_categoria.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Lbl_categoria.setText("Categoria:");
+
+        BtnGuardarNota.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BtnGuardarNota.setText("Guardar");
+        BtnGuardarNota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGuardarNotaActionPerformed(evt);
+            }
+        });
+
+        BtnAbrirNota1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BtnAbrirNota1.setText("Abrir");
+        BtnAbrirNota1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAbrirNota1ActionPerformed(evt);
+            }
+        });
+
+        BtnFiltrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BtnFiltrar.setText("filtrar por categoria");
+        BtnFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnFiltrarActionPerformed(evt);
+            }
+        });
+
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setText("Limpiar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        Txt_categoria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Txt_categoria.setText("Digite  la categoria de su nota aquí...");
+        Txt_categoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Txt_categoriaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_notasLayout = new javax.swing.GroupLayout(panel_notas);
         panel_notas.setLayout(panel_notasLayout);
         panel_notasLayout.setHorizontalGroup(
             panel_notasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
             .addGroup(panel_notasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(panel_notasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_notasLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Lbl_tituloNota, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_notasLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(panel_notasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel_notasLayout.createSequentialGroup()
+                                .addGroup(panel_notasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Txt_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panel_notasLayout.createSequentialGroup()
+                                        .addGap(3, 3, 3)
+                                        .addComponent(Lbl_categoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2)
+                                .addGap(8, 8, 8))
+                            .addGroup(panel_notasLayout.createSequentialGroup()
+                                .addComponent(BtnAbrirNota1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54)
+                                .addComponent(BtnGuardarNota, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BtnFiltrar)
+                                .addGap(16, 16, 16)))))
+                .addGap(74, 74, Short.MAX_VALUE))
         );
         panel_notasLayout.setVerticalGroup(
             panel_notasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_notasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_notasLayout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(Lbl_tituloNota, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(Lbl_categoria)
+                .addGap(18, 18, 18)
+                .addGroup(panel_notasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(Txt_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addGroup(panel_notasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnGuardarNota)
+                    .addComponent(BtnAbrirNota1)
+                    .addComponent(BtnFiltrar))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
-        jPanel1.add(panel_notas, "card4");
+        PanelAbrirNotas.add(panel_notas, "card4");
 
         panel_user.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -484,7 +589,7 @@ public class GUI_START extends javax.swing.JFrame {
             .addGap(0, 520, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panel_user, "card5");
+        PanelAbrirNotas.add(panel_user, "card5");
 
         panel_cal.setBackground(new java.awt.Color(204, 255, 204));
 
@@ -499,7 +604,7 @@ public class GUI_START extends javax.swing.JFrame {
             .addGap(0, 520, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panel_cal, "card7");
+        PanelAbrirNotas.add(panel_cal, "card7");
 
         panel_opciones.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -514,7 +619,7 @@ public class GUI_START extends javax.swing.JFrame {
             .addGap(0, 520, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panel_opciones, "card3");
+        PanelAbrirNotas.add(panel_opciones, "card3");
 
         panel_final.setBackground(new java.awt.Color(255, 204, 255));
 
@@ -529,7 +634,7 @@ public class GUI_START extends javax.swing.JFrame {
             .addGap(0, 520, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panel_final, "card6");
+        PanelAbrirNotas.add(panel_final, "card6");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -542,7 +647,7 @@ public class GUI_START extends javax.swing.JFrame {
             .addGap(0, 520, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel11, "card2");
+        PanelAbrirNotas.add(jPanel11, "card2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -552,7 +657,7 @@ public class GUI_START extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(213, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PanelAbrirNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -560,7 +665,7 @@ public class GUI_START extends javax.swing.JFrame {
             .addComponent(up_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PanelAbrirNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 10, Short.MAX_VALUE)))
         );
 
@@ -609,12 +714,16 @@ public class GUI_START extends javax.swing.JFrame {
                 deco.setVisible(false);
                 iniciar.setVisible(false);
                 menu.setVisible(true);
+                Usuario temp = new Usuario();
+                temp.setID(Integer.parseInt(SQLConectar.getID()));
+                url = temp.getUrl();
             } else {
                 advertenciaLabel.setText("Correo o contraseña incorrectos");
             }
-        }else{
+        } else {
             advertenciaLabel.setText("Hay campos vacios");
         }
+
 
     }//GEN-LAST:event_entrarActionPerformed
 
@@ -634,13 +743,13 @@ public class GUI_START extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
-    private void opcion_notasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion_notasActionPerformed
+    private void BtnAbrirNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirNotasActionPerformed
         panel_notas.setVisible(true);
         panel_user.setVisible(false);
         panel_cal.setVisible(false);
         panel_opciones.setVisible(false);
         panel_final.setVisible(false);
-    }//GEN-LAST:event_opcion_notasActionPerformed
+    }//GEN-LAST:event_BtnAbrirNotasActionPerformed
 
     private void opcion_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion_userActionPerformed
         panel_notas.setVisible(false);
@@ -648,6 +757,8 @@ public class GUI_START extends javax.swing.JFrame {
         panel_cal.setVisible(false);
         panel_opciones.setVisible(false);
         panel_final.setVisible(false);
+
+
     }//GEN-LAST:event_opcion_userActionPerformed
 
     private void opcion_finalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion_finalActionPerformed
@@ -674,9 +785,122 @@ public class GUI_START extends javax.swing.JFrame {
         panel_final.setVisible(false);
     }//GEN-LAST:event_opcion_settingsActionPerformed
 
+    private void BtnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFiltrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnFiltrarActionPerformed
+
+    private void BtnAbrirNota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirNota1ActionPerformed
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileHidingEnabled(true);
+        File workingDirectory = new File(url);
+
+        archivo.setCurrentDirectory(workingDirectory);
+
+        FileNameExtensionFilter filtroTxt = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
+        archivo.setFileFilter(filtroTxt);
+
+        Funciones conteo = new Funciones();
+
+        if (conteo.Num_Notas(url) > 0) {
+            int seleccion = archivo.showOpenDialog(this.getContentPane());
+
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                this.archivoActual = archivo.getSelectedFile();
+
+                try {
+                    if (archivoActual.getCanonicalPath().equals(url + "\\" + archivoActual.getName())) {
+
+                        Scanner myReader = new Scanner(archivo.getSelectedFile());
+                        while (myReader.hasNextLine()) {
+                            String data = myReader.nextLine();
+                            if ("".equals(TxtA_contentNota.getText())) {
+                                TxtA_contentNota.setText(data);
+                            } else {
+                                TxtA_contentNota.setText(TxtA_contentNota.getText() + "\n" + data);
+                            }
+
+                            String[] nombreArchivoTemp = (archivo.getSelectedFile().getName()).split(".txt");
+                            Lbl_tituloNota.setText(nombreArchivoTemp[0].toUpperCase());
+//                            System.out.println(data);
+                        }
+                        myReader.close();
+                        String filePath = archivo.getSelectedFile().getAbsolutePath();
+                        Path path = Paths.get(filePath);
+                        Files.setAttribute(path, "dos:hidden", false, LinkOption.NOFOLLOW_LINKS);
+                        this.archivoActual.setWritable(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No puede acceder a otra ruta que no sea propia ");
+                    }
+                } catch (IOException err) {
+
+                }
+
+            }
+
+            //archivo.setCurrentDirectory();
+        } else {
+            AdvertenciaNotasNUll advertencia = new AdvertenciaNotasNUll(this, true);
+            advertencia.setVisible(true);
+        }
+    }//GEN-LAST:event_BtnAbrirNota1ActionPerformed
+
+    private void BtnGuardarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarNotaActionPerformed
+        // TODO add your handling code here:
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileHidingEnabled(true);
+        File workingDirectory = new File(url);
+
+        archivo.setCurrentDirectory(workingDirectory);
+
+        FileNameExtensionFilter filtroTxt = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
+        archivo.setFileFilter(filtroTxt);
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
+        int returnVal = archivo.showSaveDialog(GUI_START.this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            String filePath = archivo.getSelectedFile().getAbsolutePath();
+            try {
+
+                archivoActual = new File(filePath);
+
+                if (!archivoActual.exists()) {
+                    FileWriter tempFile = new FileWriter(filePath);
+                    System.out.println("Archivo creado: " + archivoActual.getName());
+                    tempFile.write(TxtA_contentNota.getText());
+                    tempFile.close();
+                } else {
+                    System.out.println("Archivo ya existente.");
+                }
+
+            } catch (IOException err) {
+                System.out.println("An error occurred.");
+                err.printStackTrace();
+            }
+        } else {
+            System.out.println("Error");
+        }
+    }//GEN-LAST:event_BtnGuardarNotaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.TxtA_contentNota.setText(" ");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void Txt_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_categoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Txt_categoriaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAbrirNota1;
+    private javax.swing.JButton BtnAbrirNotas;
+    private javax.swing.JPanel BtnEntrarLogin;
+    private javax.swing.JButton BtnFiltrar;
+    private javax.swing.JButton BtnGuardarNota;
     private javax.swing.JButton Exit;
+    private javax.swing.JLabel Lbl_categoria;
+    private javax.swing.JLabel Lbl_tituloNota;
+    private javax.swing.JPanel PanelAbrirNotas;
+    private javax.swing.JTextArea TxtA_contentNota;
+    private javax.swing.JTextField Txt_categoria;
     private javax.swing.JLabel advertenciaLabel;
     private javax.swing.JPanel deco;
     private javax.swing.JTextField emailField;
@@ -684,6 +908,7 @@ public class GUI_START extends javax.swing.JFrame {
     private javax.swing.JButton entrar;
     private javax.swing.JPanel iniciar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -696,7 +921,6 @@ public class GUI_START extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel3;
@@ -705,13 +929,11 @@ public class GUI_START extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel menu;
     private javax.swing.JButton opcion_cal;
     private javax.swing.JButton opcion_final;
-    private javax.swing.JButton opcion_notas;
     private javax.swing.JButton opcion_settings;
     private javax.swing.JButton opcion_user;
     private javax.swing.JPanel panel_cal;

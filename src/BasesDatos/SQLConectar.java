@@ -18,6 +18,11 @@ public class SQLConectar {
 
     static Connection SQLConexion;
     static Statement statement;
+    static String ID;
+
+    public static String getID() {
+        return ID;
+    }
 
     public static void SQL_Conectar() {
 
@@ -61,12 +66,14 @@ public class SQLConectar {
 
     public static boolean verificar(String correo, String contra) {
         try {
-            String consulta = "SELECT email, password FROM registro";
+            String consulta = "SELECT ID, email, password FROM registro";
             ResultSet resultSet = statement.executeQuery(consulta);
             while (resultSet.next()) {
                 // Obtener datos de las columnas
                 String email = resultSet.getString("email");
                 String pass = resultSet.getString("password");
+                ID = resultSet.getString("ID");
+                System.out.println(ID);
 
                 //cuando quieras veificar si el correo ya esta inscrito y no dejar crear cuenta
                 if (contra.isEmpty() && email.equals(correo)) {
@@ -84,6 +91,7 @@ public class SQLConectar {
         }
         return false;
     }
+    
 
     public static boolean agregar(String nombre, String correo, String contra) {
         try {

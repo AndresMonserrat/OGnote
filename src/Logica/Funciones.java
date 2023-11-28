@@ -5,10 +5,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import Logica.Nota;
+import javax.swing.JFileChooser;
 
 public class Funciones {
-    public static int Num_Notas(String usuario){
-        File notas = new File(usuario);
+    
+    public int Num_Notas(String url_usuario){
+        File notas = new File(url_usuario);
         File[] archivos = notas.listFiles();
         int cont=0;
         for (File nota : archivos){
@@ -17,9 +19,12 @@ public class Funciones {
         return cont;
     }
     
-public static void abrirNota(){
+     
     
-}
+    
+//public static void abrirNota(){
+//    
+//}
     
     
     
