@@ -4,8 +4,8 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import BasesDatos.SQLConectar;
 import Logica.Funciones;
-import Logica.Logicca;
-import Logica.Usuario;
+import ModPersona.funcionesPersona;
+import ModPersona.Usuario;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -571,7 +571,7 @@ public class GUI_START extends javax.swing.JFrame {
                     .addComponent(BtnGuardarNota)
                     .addComponent(BtnAbrirNota1)
                     .addComponent(BtnFiltrar))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         PanelAbrirNotas.add(panel_notas, "card4");
@@ -662,11 +662,13 @@ public class GUI_START extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(up_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(up_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(PanelAbrirNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 10, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -806,10 +808,10 @@ public class GUI_START extends javax.swing.JFrame {
 
             if (seleccion == JFileChooser.APPROVE_OPTION) {
                 this.archivoActual = archivo.getSelectedFile();
-
+                
                 try {
                     if (archivoActual.getCanonicalPath().equals(url + "\\" + archivoActual.getName())) {
-
+                        TxtA_contentNota.setText("");
                         Scanner myReader = new Scanner(archivo.getSelectedFile());
                         while (myReader.hasNextLine()) {
                             String data = myReader.nextLine();

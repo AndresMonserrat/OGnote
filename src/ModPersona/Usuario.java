@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Logica;
+package ModPersona;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,12 +17,14 @@ import java.util.logging.Logger;
  * @author deavi
  */
 public class Usuario {
-    private   int ID;
+    private  int ID;
     private  String url;
-
+    private  String email;
+    private  String contraseña; 
 
     public void setID(int ID) {
         this.ID = ID;
+        this.email = "";
         setUrl();
     }
 

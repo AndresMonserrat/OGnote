@@ -1,9 +1,10 @@
-package Logica;
+package ModPersona;
 
 import java.io.File;
 import Logica.Excepciones;
+import Logica.Excepciones;
 
-public class Logicca {
+public class funcionesPersona {
 
     public Excepciones ex = new Excepciones();
 
