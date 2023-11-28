@@ -5,13 +5,16 @@
 package og;
 
 import BasesDatos.SQLConectar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
  * @author camil
  */
 public class registro extends javax.swing.JFrame {
-
+    
+    
     /**
      * Creates new form registro
      */
@@ -30,6 +33,7 @@ public class registro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         nombre1Field = new javax.swing.JTextField();
@@ -53,6 +57,8 @@ public class registro extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         advertenciaLabel = new javax.swing.JLabel();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -271,20 +277,25 @@ public class registro extends javax.swing.JFrame {
         String apellido2 = apellido2Field.getText();
         String correo = emailField.getText();
         String contra = new String(passwordField.getPassword());
-
+        SQLConectar.SQL_Conectar();
         if (!nombre.isBlank() && !apellido.isBlank() && !apellido2.isBlank() && !correo.isBlank() && !contra.isBlank()) {
+            if (registro.verificarEmail(correo)){
             if (!SQLConectar.verificar(correo, "")) {
                 if (nombre2.isBlank()) {
                     nombre = nombre + " " + apellido + " " + apellido2;
                 }else{
                     nombre = nombre + " " + nombre2 + " " + apellido + " " + apellido2;
                 }
+                
+
                 SQLConectar.agregar(nombre, correo, contra);
                 this.setVisible(false);
                 GUI_START f2 = new GUI_START();
                 f2.setVisible(true);
             } else {
                 advertenciaLabel.setText("Correo ya existente");
+            }}else{
+                advertenciaLabel.setText("Formato de correo incorrecto");
             }
         } else {
             advertenciaLabel.setText("Llenar campo obligatorios");
@@ -292,6 +303,19 @@ public class registro extends javax.swing.JFrame {
 
     }//GEN-LAST:event_CrearButtonActionPerformed
 
+public static boolean verificarEmail(String email){
+    Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+        Matcher mat = pattern.matcher(email);
+
+        if(mat.matches()){
+            System.out.println("Valid email address");
+            return true;
+        }else{
+
+            System.out.println("Not a valid email address");
+            return false;
+        }
+}
     /**
      * @param args the command line arguments
      */
@@ -334,6 +358,7 @@ public class registro extends javax.swing.JFrame {
     private javax.swing.JTextField apellido2Field;
     private javax.swing.JTextField emailField;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

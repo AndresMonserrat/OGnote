@@ -86,10 +86,9 @@ public class SQLConectar {
 
     public static boolean agregar(String nombre, String correo, String contra) {
         try {
-            Logicca carpetausuario = new Logicca();
-            String consulta = "INSERT INTO registro (nombre, password, email) VALUES ('" + nombre + "', '" + contra + "', '" + correo + "')";
+            //Logicca carpetausuario = new Logicca();
 
-            int filasAfectadas = statement.executeUpdate(consulta);
+            int filasAfectadas = statement.executeUpdate("INSERT INTO registro (nombre, password, email) VALUES ('" + nombre + "', '" + contra + "', '" + correo + "')");
             if (filasAfectadas > 0) {
                 System.out.println("Persona agregada exitosamente.");
                 //se debe crear el usuario de tipo persona.
