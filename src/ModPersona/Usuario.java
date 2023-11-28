@@ -29,10 +29,10 @@ public class Usuario {
     }
 
     public void setUrl() {
-        this.url ="C:\\Users\\deavi\\Downloads\\OG_Note_ProFinal-Camilo\\src\\notas\\"+ID;
+        this.url =System.getProperty("user.home")+"\\notas\\"+ID;
         Path path = Paths.get(url);
         File archivo = new File(url);
-        archivo.mkdir();
+        archivo.mkdirs();
         try{
             //Oculado
             Files.setAttribute(path, "dos:hidden", true);
