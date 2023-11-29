@@ -702,7 +702,7 @@ public class GUI_START extends javax.swing.JFrame {
                 iniciar.setVisible(false);
                 menu.setVisible(true);
                 Usuario temp = new Usuario();
-                temp.setID(Integer.parseInt(SQLConectar.getID()));
+                temp.setID(Integer.parseInt(SQLConectar.getID()),email);
                 url = temp.getUrl();
             } else {
                 advertenciaLabel.setText("Correo o contraseña incorrectos");

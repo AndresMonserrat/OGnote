@@ -8,13 +8,13 @@ public class Nota implements Serializable{
     private String nombre;
     private String categoria;
     private String contenido;
-    private String usuario;
+    private String url_usuario;
 
-    public Nota(String nombre, String categoria, String contenido, String usuario) {
+    public Nota(String nombre, String categoria, String contenido, String url_usuario) {
         this.nombre = nombre;
         this.contenido = contenido;
         this.categoria = categoria;
-        this.usuario = usuario;
+        this.url_usuario = url_usuario;
         
     }
 
@@ -43,11 +43,11 @@ public class Nota implements Serializable{
     }
 
     public String getUsuario() {
-        return usuario;
+        return url_usuario;
     }
 
     public void setUsuario(String usuario) {
-        this.usuario = usuario;
+        this.url_usuario = usuario;
     }
 
     

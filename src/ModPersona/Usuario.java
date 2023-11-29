@@ -20,12 +20,11 @@ public class Usuario {
     private  int ID;
     private  String url;
     private  String email;
-    private  String contraseña; 
 
-    public void setID(int ID) {
+    public void setID(int ID,String correo) {
         this.ID = ID;
-        this.email = "";
-        setUrl();
+        this.email = correo;
+        setUrl(); 
     }
 
     public void setUrl() {

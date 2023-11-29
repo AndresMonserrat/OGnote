@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,6 +19,8 @@ public class SQLConectar {
     static Connection SQLConexion;
     static Statement statement;
     static String ID;
+
+    private static ArrayList<Usuario> Usuarios = new ArrayList<>();
 
     public static String getID() {
         return ID;
@@ -45,9 +48,14 @@ public class SQLConectar {
             SQLConexion = DriverManager.getConnection(databaseURL, usuario, pass);
             statement = SQLConexion.createStatement();
             System.out.println("Base de datos conectada");
+            
+            agregar();
+            
+            
         } catch (Exception ex) {
             System.out.println("base de datos no conectada");
         }
+        
     }
 
     public static Connection getConectarDB() {
@@ -61,6 +69,25 @@ public class SQLConectar {
         } catch (SQLException ex) {
             Logger.getLogger(SQLConectar.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public static void agregar() throws SQLException {
+        String consulta = "SELECT ID, email FROM registro";
+        ResultSet resultSet = statement.executeQuery(consulta);
+        while (resultSet.next()) {
+            // Obtener datos de las columnas
+            String email = resultSet.getString("email");
+            int ID = Integer.parseInt(resultSet.getString("ID"));
+
+            System.out.println(ID);
+
+            Usuario user = new Usuario();
+            user.setID(ID, email);
+            Usuarios.add(user);
+            //cuando quieras veificar si el correo ya esta inscrito y no dejar crear cuenta
+            
+        }
+        resultSet.close();
     }
 
     public static boolean verificar(String correo) throws SQLException {
@@ -89,9 +116,11 @@ public class SQLConectar {
                 String pass = resultSet.getString("password");
                 ID = resultSet.getString("ID");
                 System.out.println(ID);
+
                 //para que te deje entrar a la app
                 if (email.equals(correo) && pass.equals(contra)) {
                     resultSet.close();
+
                     return true;
                 }
             }
@@ -118,7 +147,9 @@ public class SQLConectar {
                         ID = resultSet.getInt(1);
                     }
                     Usuario user = new Usuario();
-                    user.setID(ID);
+                    user.setID(ID, correo);
+                    Usuarios.add(user);
+
                     resultSet.close();
 
                 } catch (Exception e) {
@@ -135,11 +166,13 @@ public class SQLConectar {
             return false;
         }
     }
-    /*
-    public static void main(String[] args) throws SQLException {
-        SQL_Conectar();
-        boolean esta = verificar("camilo@hotmail.com", "");
-        //boolean agrego = agregar("gringo","0631","samuel@gmail.com");
-    }
-     */
+    
+//    public static void main(String[] args) throws SQLException {
+//        SQL_Conectar();
+//        
+//        
+//        System.out.println(Usuarios);
+//        //boolean agrego = agregar("gringo","0631","samuel@gmail.com");
+//    
+//    }
 }
