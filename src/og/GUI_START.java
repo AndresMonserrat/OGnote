@@ -72,8 +72,6 @@ public class GUI_START extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         BtnAbrirNotas = new javax.swing.JButton();
-        opcion_user = new javax.swing.JButton();
-        opcion_cal = new javax.swing.JButton();
         opcion_settings = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         iniciar = new javax.swing.JPanel();
@@ -117,6 +115,10 @@ public class GUI_START extends javax.swing.JFrame {
         panel_opciones = new javax.swing.JPanel();
         menuoscuro = new javax.swing.JButton();
         panel_final = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -141,7 +143,7 @@ public class GUI_START extends javax.swing.JFrame {
                 opcion_finalActionPerformed(evt);
             }
         });
-        menu.add(opcion_final, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 160, 40));
+        menu.add(opcion_final, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 160, 40));
 
         Exit.setBackground(new java.awt.Color(204, 255, 255));
         Exit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -187,31 +189,7 @@ public class GUI_START extends javax.swing.JFrame {
                 BtnAbrirNotasActionPerformed(evt);
             }
         });
-        menu.add(BtnAbrirNotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 160, 40));
-
-        opcion_user.setBackground(new java.awt.Color(166, 195, 192));
-        opcion_user.setForeground(new java.awt.Color(8, 59, 8));
-        opcion_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/User Male.png"))); // NOI18N
-        opcion_user.setText("Usuario");
-        opcion_user.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        opcion_user.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opcion_userActionPerformed(evt);
-            }
-        });
-        menu.add(opcion_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 160, 40));
-
-        opcion_cal.setBackground(new java.awt.Color(166, 195, 192));
-        opcion_cal.setForeground(new java.awt.Color(8, 59, 8));
-        opcion_cal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Google Calendar.png"))); // NOI18N
-        opcion_cal.setText("Calendario");
-        opcion_cal.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        opcion_cal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opcion_calActionPerformed(evt);
-            }
-        });
-        menu.add(opcion_cal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 160, 40));
+        menu.add(BtnAbrirNotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 160, 40));
 
         opcion_settings.setBackground(new java.awt.Color(166, 195, 192));
         opcion_settings.setForeground(new java.awt.Color(8, 59, 8));
@@ -223,7 +201,7 @@ public class GUI_START extends javax.swing.JFrame {
                 opcion_settingsActionPerformed(evt);
             }
         });
-        menu.add(opcion_settings, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 160, 40));
+        menu.add(opcion_settings, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 160, 40));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ño.png"))); // NOI18N
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -629,15 +607,56 @@ public class GUI_START extends javax.swing.JFrame {
 
         panel_final.setBackground(new java.awt.Color(255, 204, 255));
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Un programa academico para gestionar las actividades diarias de los usuarios.");
+        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/vamito.png"))); // NOI18N
+        jLabel14.setToolTipText("");
+
+        jLabel13.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("newognote@gmail.com");
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("© 2023 OGNOTE");
+
         javax.swing.GroupLayout panel_finalLayout = new javax.swing.GroupLayout(panel_final);
         panel_final.setLayout(panel_finalLayout);
         panel_finalLayout.setHorizontalGroup(
             panel_finalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 709, Short.MAX_VALUE)
+            .addGroup(panel_finalLayout.createSequentialGroup()
+                .addGroup(panel_finalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
+                    .addGroup(panel_finalLayout.createSequentialGroup()
+                        .addGroup(panel_finalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel_finalLayout.createSequentialGroup()
+                                .addGap(149, 149, 149)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel_finalLayout.createSequentialGroup()
+                                .addGap(239, 239, 239)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(panel_finalLayout.createSequentialGroup()
+                .addGap(222, 222, 222)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_finalLayout.setVerticalGroup(
             panel_finalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_finalLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(jLabel13)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jLabel15)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         PanelAbrirNotas.add(panel_final, "card6");
@@ -758,16 +777,6 @@ public class GUI_START extends javax.swing.JFrame {
         jButton2.setVisible(true);
     }//GEN-LAST:event_BtnAbrirNotasActionPerformed
 
-    private void opcion_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion_userActionPerformed
-        panel_notas.setVisible(false);
-        panel_user.setVisible(true);
-        panel_cal.setVisible(false);
-        panel_opciones.setVisible(false);
-        panel_final.setVisible(false);
-
-
-    }//GEN-LAST:event_opcion_userActionPerformed
-
     private void opcion_finalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion_finalActionPerformed
         panel_notas.setVisible(false);
         panel_user.setVisible(false);
@@ -775,14 +784,6 @@ public class GUI_START extends javax.swing.JFrame {
         panel_opciones.setVisible(false);
         panel_final.setVisible(true);
     }//GEN-LAST:event_opcion_finalActionPerformed
-
-    private void opcion_calActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion_calActionPerformed
-        panel_notas.setVisible(false);
-        panel_user.setVisible(false);
-        panel_cal.setVisible(true);
-        panel_opciones.setVisible(false);
-        panel_final.setVisible(false);
-    }//GEN-LAST:event_opcion_calActionPerformed
 
     private void opcion_settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion_settingsActionPerformed
         panel_notas.setVisible(false);
@@ -926,7 +927,28 @@ public class GUI_START extends javax.swing.JFrame {
     }//GEN-LAST:event_Txt_categoriaActionPerformed
 
     private void menuoscuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuoscuroActionPerformed
-        
+    panel_notas.setBackground(new java.awt.Color(0, 102, 102));
+    menu.setBackground(new java.awt.Color(0, 51, 51));
+    panel_opciones.setBackground(new java.awt.Color(102, 0,51));
+    panel_user.setBackground(new java.awt.Color(9, 75,75));
+    panel_final.setBackground(new java.awt.Color(109, 0,109));
+    
+    BtnAbrirNotas.setBackground(new java.awt.Color(51, 51,51));
+    BtnAbrirNotas.setForeground(new java.awt.Color(51, 51,255));
+   
+    
+    
+    opcion_settings.setBackground(new java.awt.Color(51, 51,51));
+    opcion_settings.setForeground(new java.awt.Color(51, 51,255));
+    
+    opcion_final.setBackground(new java.awt.Color(51, 51,51));
+    opcion_final.setForeground(new java.awt.Color(51, 51,255));
+    
+    jLabel13.setForeground(new java.awt.Color(255, 255,255));
+    jLabel7.setForeground(new java.awt.Color(255, 255,255));
+    jLabel15.setForeground(new java.awt.Color(255, 255,255));
+    showuser.setForeground(new java.awt.Color(102, 102,102));
+    jLabel11.setForeground(new java.awt.Color(255, 255,255));
     }//GEN-LAST:event_menuoscuroActionPerformed
 
 
@@ -953,11 +975,15 @@ public class GUI_START extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel10;
@@ -972,10 +998,8 @@ public class GUI_START extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel menu;
     private javax.swing.JButton menuoscuro;
-    private javax.swing.JButton opcion_cal;
     private javax.swing.JButton opcion_final;
     private javax.swing.JButton opcion_settings;
-    private javax.swing.JButton opcion_user;
     private javax.swing.JPanel panel_cal;
     private javax.swing.JPanel panel_final;
     private javax.swing.JPanel panel_notas;
