@@ -4,7 +4,6 @@ package BasesDatos;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-import ModPersona.funcionesPersona;
 import ModPersona.Usuario;
 import java.sql.Statement;
 import java.sql.Connection;
@@ -64,6 +63,22 @@ public class SQLConectar {
         }
     }
 
+    public static boolean verificar(String correo) throws SQLException {
+        String consulta = "SELECT ID, email FROM registro";
+        ResultSet resultSet = statement.executeQuery(consulta);
+        while (resultSet.next()) {
+            // Obtener datos de las columnas
+            String email = resultSet.getString("email");
+            ID = resultSet.getString("ID");
+            System.out.println(ID);
+            //cuando quieras veificar si el correo ya esta inscrito y no dejar crear cuenta
+            if (email.equals(correo)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean verificar(String correo, String contra) {
         try {
             String consulta = "SELECT ID, email, password FROM registro";
@@ -74,13 +89,8 @@ public class SQLConectar {
                 String pass = resultSet.getString("password");
                 ID = resultSet.getString("ID");
                 System.out.println(ID);
-
-                //cuando quieras veificar si el correo ya esta inscrito y no dejar crear cuenta
-                if (contra.isEmpty() && email.equals(correo)) {
-                    return true;
-                }
                 //para que te deje entrar a la app
-                if (!contra.isEmpty() && email.equals(correo) && pass.equals(contra)) {
+                if (email.equals(correo) && pass.equals(contra)) {
                     resultSet.close();
                     return true;
                 }
@@ -91,7 +101,6 @@ public class SQLConectar {
         }
         return false;
     }
-    
 
     public static boolean agregar(String nombre, String correo, String contra) {
         try {
@@ -102,18 +111,16 @@ public class SQLConectar {
                 System.out.println("Persona agregada exitosamente.");
                 //se debe crear el usuario de tipo persona.
                 try {
-                    int ID=0;
-                    String consulta = "SELECT ID FROM registro WHERE email =\""+correo+"\"";
+                    int ID = 0;
+                    String consulta = "SELECT ID FROM registro WHERE email =\"" + correo + "\"";
                     ResultSet resultSet = statement.executeQuery(consulta);
-                    if(resultSet.next()){
+                    if (resultSet.next()) {
                         ID = resultSet.getInt(1);
                     }
                     Usuario user = new Usuario();
                     user.setID(ID);
                     resultSet.close();
-                    
-                    
-                    
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

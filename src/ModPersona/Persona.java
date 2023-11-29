@@ -8,21 +8,17 @@ package ModPersona;
  *
  * @author deavi
  */
- class Persona {
-    private String nombre;
+abstract class Persona {
+    private String nombre_completo;
 
     public Persona() {
     }
 
     public Persona(String nombre) {
-        this.nombre = nombre;
+        this.nombre_completo = nombre;
     }
     
    
-    public String toString(){
-        
-        return null;
-        
-    }
+    
     
 } 

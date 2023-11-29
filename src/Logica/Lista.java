@@ -12,31 +12,31 @@ class Nodo {
     }
 }
 
-class ListaDobleEnlazada {
-    Nodo inicio;
-
-    public ListaDobleEnlazada() {
-        this.inicio = null;
-    }
-
-    // Método para agregar un nodo al final de la lista
-    public void agregar(Nota dato) {
-        Nodo nuevoNodo = new Nodo(dato);
-
-        if (inicio == null) {
-            inicio = nuevoNodo;
-        } else {
-            Nodo ultimo = inicio;
-            while (ultimo.siguiente != null) {
-                ultimo = ultimo.siguiente;
-            }
-
-            ultimo.siguiente = nuevoNodo;
-            nuevoNodo.anterior = ultimo;
-        }
-    }
-
-    // Método para imprimir la lista hacia adelante
+//class ListaDobleEnlazada {
+//    Nodo inicio;
+//
+//    public ListaDobleEnlazada() {
+//        this.inicio = null;
+//    }
+//
+//     Método para agregar un nodo al final de la lista
+//    public void agregar(Nota nota) {
+//        Nodo nuevoNodo = new Nodo(nota);
+//
+//        if (inicio == null) {
+//            inicio = nuevoNodo;
+//        } else {
+//            Nodo ultimo = inicio;
+//            while (ultimo.siguiente != null) {
+//                ultimo = ultimo.siguiente;
+//            }
+//
+//            ultimo.siguiente = nuevoNodo;
+//            nuevoNodo.anterior = ultimo;
+//        }
+//    }
+//
+//     Método para imprimir la lista hacia adelante
 //    public void imprimir() {
 //        Nodo actual = inicio;
 //        while (actual != null) {
@@ -45,4 +45,4 @@ class ListaDobleEnlazada {
 //        }
 //        System.out.println();
 //    }
-}
+

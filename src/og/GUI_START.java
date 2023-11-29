@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import BasesDatos.SQLConectar;
 import Logica.Funciones;
 import Logica.Nota;
-import ModPersona.funcionesPersona;
+
 import ModPersona.Usuario;
 import java.io.File;
 import java.io.FileInputStream;
@@ -551,10 +551,11 @@ public class GUI_START extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
-                .addGroup(panel_notasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panel_notasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BtnGuardarNota)
-                    .addComponent(BtnAbrirNota1)
-                    .addComponent(BtnFiltrar))
+                    .addGroup(panel_notasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(BtnAbrirNota1)
+                        .addComponent(BtnFiltrar)))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
 
@@ -769,7 +770,7 @@ public class GUI_START extends javax.swing.JFrame {
 
     private void BtnAbrirNota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirNota1ActionPerformed
         JFileChooser archivo = new JFileChooser();
-        archivo.setFileHidingEnabled(true);
+        archivo.setFileHidingEnabled(true); //no se muestran archivos ocultos
         File workingDirectory = new File(url);
 
         archivo.setCurrentDirectory(workingDirectory);
@@ -842,13 +843,14 @@ public class GUI_START extends javax.swing.JFrame {
 
 //        FileNameExtensionFilter filtroTxt = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
 //        archivo.setFileFilter(filtroTxt);
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
+//        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
 
         if ((this.Txt_categoria.getText()).isBlank() != true) {
             
             
-           
+            //abrir el fileCHooser para guardar
             int returnVal = archivo.showSaveDialog(GUI_START.this);
+            //si el usuario acpeta el guardado
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 String filePath = archivo.getSelectedFile().getAbsolutePath();
                 try {
