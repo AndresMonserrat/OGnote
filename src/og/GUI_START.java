@@ -45,7 +45,7 @@ public class GUI_START extends javax.swing.JFrame {
         panel_opciones.setVisible(false);
         panel_final.setVisible(false);
         SQLConectar.SQL_Conectar();
-        
+
         TxtA_contentNota.setVisible(false);
         Txt_categoria.setVisible(false);
         BtnAbrirNota1.setVisible(false);
@@ -110,6 +110,7 @@ public class GUI_START extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
         Txt_categoria = new javax.swing.JTextField();
+        BtnEliminar = new javax.swing.JButton();
         panel_user = new javax.swing.JPanel();
         panel_cal = new javax.swing.JPanel();
         panel_opciones = new javax.swing.JPanel();
@@ -489,6 +490,14 @@ public class GUI_START extends javax.swing.JFrame {
             }
         });
 
+        BtnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BtnEliminar.setText("Eliminar");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel_notasLayout = new javax.swing.GroupLayout(panel_notas);
         panel_notas.setLayout(panel_notasLayout);
         panel_notasLayout.setHorizontalGroup(
@@ -515,10 +524,12 @@ public class GUI_START extends javax.swing.JFrame {
                             .addGroup(panel_notasLayout.createSequentialGroup()
                                 .addComponent(BtnAbrirNota1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(54, 54, 54)
-                                .addComponent(BtnGuardarNota, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BtnFiltrar)
-                                .addGap(16, 16, 16)))))
+                                .addGroup(panel_notasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BtnFiltrar)
+                                    .addGroup(panel_notasLayout.createSequentialGroup()
+                                        .addComponent(BtnGuardarNota, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(93, 93, 93)
+                                        .addComponent(BtnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
                 .addGap(74, 74, Short.MAX_VALUE))
         );
         panel_notasLayout.setVerticalGroup(
@@ -538,11 +549,13 @@ public class GUI_START extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addGroup(panel_notasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnGuardarNota)
                     .addGroup(panel_notasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(BtnAbrirNota1)
-                        .addComponent(BtnFiltrar)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                        .addComponent(BtnGuardarNota)
+                        .addComponent(BtnEliminar))
+                    .addComponent(BtnAbrirNota1))
+                .addGap(31, 31, 31)
+                .addComponent(BtnFiltrar)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         PanelAbrirNotas.add(panel_notas, "card4");
@@ -768,7 +781,7 @@ public class GUI_START extends javax.swing.JFrame {
         panel_cal.setVisible(false);
         panel_opciones.setVisible(false);
         panel_final.setVisible(false);
-        
+
         TxtA_contentNota.setVisible(true);
         Txt_categoria.setVisible(true);
         BtnAbrirNota1.setVisible(true);
@@ -873,10 +886,8 @@ public class GUI_START extends javax.swing.JFrame {
 //        FileNameExtensionFilter filtroTxt = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
 //        archivo.setFileFilter(filtroTxt);
 //        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
-
         if ((this.Txt_categoria.getText()).isBlank() != true) {
-            
-            
+
             //abrir el fileCHooser para guardar
             int returnVal = archivo.showSaveDialog(GUI_START.this);
             //si el usuario acpeta el guardado
@@ -912,7 +923,7 @@ public class GUI_START extends javax.swing.JFrame {
             } else {
                 System.out.println("Error");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Esta vacio el campo categoria.");
         }
     }//GEN-LAST:event_BtnGuardarNotaActionPerformed
@@ -927,34 +938,65 @@ public class GUI_START extends javax.swing.JFrame {
     }//GEN-LAST:event_Txt_categoriaActionPerformed
 
     private void menuoscuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuoscuroActionPerformed
-    panel_notas.setBackground(new java.awt.Color(0, 102, 102));
-    menu.setBackground(new java.awt.Color(0, 51, 51));
-    panel_opciones.setBackground(new java.awt.Color(102, 0,51));
-    panel_user.setBackground(new java.awt.Color(9, 75,75));
-    panel_final.setBackground(new java.awt.Color(109, 0,109));
-    
-    BtnAbrirNotas.setBackground(new java.awt.Color(51, 51,51));
-    BtnAbrirNotas.setForeground(new java.awt.Color(51, 51,255));
-   
-    
-    
-    opcion_settings.setBackground(new java.awt.Color(51, 51,51));
-    opcion_settings.setForeground(new java.awt.Color(51, 51,255));
-    
-    opcion_final.setBackground(new java.awt.Color(51, 51,51));
-    opcion_final.setForeground(new java.awt.Color(51, 51,255));
-    
-    jLabel13.setForeground(new java.awt.Color(255, 255,255));
-    jLabel7.setForeground(new java.awt.Color(255, 255,255));
-    jLabel15.setForeground(new java.awt.Color(255, 255,255));
-    showuser.setForeground(new java.awt.Color(102, 102,102));
-    jLabel11.setForeground(new java.awt.Color(255, 255,255));
+        panel_notas.setBackground(new java.awt.Color(0, 102, 102));
+        menu.setBackground(new java.awt.Color(0, 51, 51));
+        panel_opciones.setBackground(new java.awt.Color(102, 0, 51));
+        panel_user.setBackground(new java.awt.Color(9, 75, 75));
+        panel_final.setBackground(new java.awt.Color(109, 0, 109));
+
+        BtnAbrirNotas.setBackground(new java.awt.Color(51, 51, 51));
+        BtnAbrirNotas.setForeground(new java.awt.Color(51, 51, 255));
+
+        opcion_settings.setBackground(new java.awt.Color(51, 51, 51));
+        opcion_settings.setForeground(new java.awt.Color(51, 51, 255));
+
+        opcion_final.setBackground(new java.awt.Color(51, 51, 51));
+        opcion_final.setForeground(new java.awt.Color(51, 51, 255));
+
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        showuser.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_menuoscuroActionPerformed
+
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        JFileChooser archivo = new JFileChooser();
+        archivo.setFileHidingEnabled(true);
+        File workingDirectory = new File(url);
+
+        archivo.setCurrentDirectory(workingDirectory);
+
+        //abrir el fileCHooser para guardar
+        int returnVal = archivo.showSaveDialog(GUI_START.this);
+        //si el usuario acpeta el guardado
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            String filePath = archivo.getSelectedFile().getAbsolutePath();
+            archivoActual = new File(filePath);
+            if (archivoActual.exists()) {
+//                    FileWriter tempFile = new FileWriter(filePath);
+//                    System.out.println("Archivo creado: " + archivoActual.getName());
+//                    tempFile.write(TxtA_contentNota.getText());
+//                    tempFile.close();
+                archivoActual.delete();
+                this.TxtA_contentNota.setText(" ");
+                this.Txt_categoria.setText(" ");
+
+            } else {
+                System.out.println("No se pudo eliminar");
+            }
+        } else {
+            System.out.println("Error al eliminar");
+        }
+
+
+    }//GEN-LAST:event_BtnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAbrirNota1;
     private javax.swing.JButton BtnAbrirNotas;
+    private javax.swing.JButton BtnEliminar;
     private javax.swing.JPanel BtnEntrarLogin;
     private javax.swing.JButton BtnFiltrar;
     private javax.swing.JButton BtnGuardarNota;
