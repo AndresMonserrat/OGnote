@@ -3,49 +3,57 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
-public class Nota {
-    private int id;
+import java.io.Serializable;
+public class Nota implements Serializable{
     private String nombre;
     private String categoria;
     private String contenido;
     private String usuario;
 
-    public Nota(String nombre, String categoria, String contenido, String usuario, int id) {
+    public Nota(String nombre, String categoria, String contenido, String usuario) {
         this.nombre = nombre;
         this.contenido = contenido;
         this.categoria = categoria;
-        this.id = id;
         this.usuario = usuario;
-        try {
-            File archivo = new File(usuario + File.separator + nombre + ".txt");
-            FileWriter escritor = new FileWriter(archivo);
-            BufferedWriter bufferEscritura = new BufferedWriter(escritor);
-            bufferEscritura.write(usuario + ";" +nombre + ";" + this.id + ";" + categoria + ";" + contenido);
-            bufferEscritura.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String Get_name() {
-        return this.nombre;
-    }
-
-    public String Get_contenido() {
-        return this.contenido;
-    }
-    public String Get_categoria(){
-        return this.categoria;
         
     }
 
-    public void imprimir() {
-        System.out.println("Nombre: " + this.nombre);
-        System.out.println("ID: " + this.id);
-        System.out.println("Categoría: " + this.categoria);
-        System.out.println("Contenido: " + this.contenido);
+    public String getNombre() {
+        return nombre;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    
+    
+
+   
 }
 
     

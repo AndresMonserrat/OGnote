@@ -4,16 +4,23 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import BasesDatos.SQLConectar;
 import Logica.Funciones;
+import Logica.Nota;
 import ModPersona.funcionesPersona;
 import ModPersona.Usuario;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -64,7 +71,6 @@ public class GUI_START extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         iniciar = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -75,7 +81,6 @@ public class GUI_START extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
         jPanel8 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         BtnEntrarLogin = new javax.swing.JPanel();
         entrar = new javax.swing.JButton();
@@ -217,25 +222,13 @@ public class GUI_START extends javax.swing.JFrame {
         menu.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, -10, 210, 120));
 
         up_panel.add(menu);
-        menu.setBounds(0, 0, 220, 510);
+        menu.setBounds(0, 0, 210, 510);
 
         iniciar.setPreferredSize(new java.awt.Dimension(400, 0));
         iniciar.setLayout(null);
 
         jPanel4.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
         jPanel4.setPreferredSize(new java.awt.Dimension(400, 50));
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Google_2.png"))); // NOI18N
-        jButton1.setText(" Iniciar sesión con Google");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.setPreferredSize(new java.awt.Dimension(250, 30));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton1);
-
         iniciar.add(jPanel4);
         jPanel4.setBounds(0, 112, 400, 50);
 
@@ -289,14 +282,6 @@ public class GUI_START extends javax.swing.JFrame {
 
         jPanel8.setPreferredSize(new java.awt.Dimension(250, 25));
         jPanel8.setLayout(new java.awt.BorderLayout());
-
-        jCheckBox1.setText("Recordarme");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
-        jPanel8.add(jCheckBox1, java.awt.BorderLayout.WEST);
 
         jLabel4.setForeground(new java.awt.Color(0, 102, 0));
         jLabel4.setText("Olvidaste tu contraseña?");
@@ -512,7 +497,6 @@ public class GUI_START extends javax.swing.JFrame {
         });
 
         Txt_categoria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Txt_categoria.setText("Digite  la categoria de su nota aquí...");
         Txt_categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Txt_categoriaActionPerformed(evt);
@@ -571,7 +555,7 @@ public class GUI_START extends javax.swing.JFrame {
                     .addComponent(BtnGuardarNota)
                     .addComponent(BtnAbrirNota1)
                     .addComponent(BtnFiltrar))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         PanelAbrirNotas.add(panel_notas, "card4");
@@ -664,7 +648,7 @@ public class GUI_START extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(up_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(PanelAbrirNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -729,17 +713,9 @@ public class GUI_START extends javax.swing.JFrame {
 
     }//GEN-LAST:event_entrarActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailFieldActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         System.exit(0);
@@ -798,9 +774,8 @@ public class GUI_START extends javax.swing.JFrame {
 
         archivo.setCurrentDirectory(workingDirectory);
 
-        FileNameExtensionFilter filtroTxt = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
-        archivo.setFileFilter(filtroTxt);
-
+//        FileNameExtensionFilter filtroTxt = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
+//        archivo.setFileFilter(filtroTxt);
         Funciones conteo = new Funciones();
 
         if (conteo.Num_Notas(url) > 0) {
@@ -808,33 +783,44 @@ public class GUI_START extends javax.swing.JFrame {
 
             if (seleccion == JFileChooser.APPROVE_OPTION) {
                 this.archivoActual = archivo.getSelectedFile();
-                
+
                 try {
                     if (archivoActual.getCanonicalPath().equals(url + "\\" + archivoActual.getName())) {
-                        TxtA_contentNota.setText("");
-                        Scanner myReader = new Scanner(archivo.getSelectedFile());
-                        while (myReader.hasNextLine()) {
-                            String data = myReader.nextLine();
-                            if ("".equals(TxtA_contentNota.getText())) {
-                                TxtA_contentNota.setText(data);
-                            } else {
-                                TxtA_contentNota.setText(TxtA_contentNota.getText() + "\n" + data);
-                            }
+//                        TxtA_contentNota.setText("");
+//                        Scanner myReader = new Scanner(archivo.getSelectedFile());
+//                        while (myReader.hasNextLine()) {
+//                            String data = myReader.nextLine();
+//                            if ("".equals(TxtA_contentNota.getText())) {
+//                                TxtA_contentNota.setText(data);
+//                            } else {
+//                                TxtA_contentNota.setText(TxtA_contentNota.getText() + "\n" + data);
+//                            }
+//
+//                            String[] nombreArchivoTemp = (archivo.getSelectedFile().getName()).split(".txt");
+//                            Lbl_tituloNota.setText(nombreArchivoTemp[0].toUpperCase());
+////                            System.out.println(data);
+//                        }
+//                        myReader.close();
+//                        String filePath = archivo.getSelectedFile().getAbsolutePath();
+//                        Path path = Paths.get(filePath);
+//                        Files.setAttribute(path, "dos:hidden", false, LinkOption.NOFOLLOW_LINKS);
+//                        this.archivoActual.setWritable(true);
 
-                            String[] nombreArchivoTemp = (archivo.getSelectedFile().getName()).split(".txt");
-                            Lbl_tituloNota.setText(nombreArchivoTemp[0].toUpperCase());
-//                            System.out.println(data);
-                        }
-                        myReader.close();
-                        String filePath = archivo.getSelectedFile().getAbsolutePath();
-                        Path path = Paths.get(filePath);
-                        Files.setAttribute(path, "dos:hidden", false, LinkOption.NOFOLLOW_LINKS);
-                        this.archivoActual.setWritable(true);
+                        FileInputStream fileInputStream = new FileInputStream(archivo.getSelectedFile().getAbsolutePath());
+                        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+                        Nota nota = (Nota) objectInputStream.readObject();
+                        TxtA_contentNota.setText(nota.getContenido());
+                        Lbl_tituloNota.setText(nota.getNombre());
+                        Txt_categoria.setText(nota.getCategoria());
+
                     } else {
                         JOptionPane.showMessageDialog(null, "No puede acceder a otra ruta que no sea propia ");
                     }
                 } catch (IOException err) {
 
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(GUI_START.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
@@ -854,36 +840,55 @@ public class GUI_START extends javax.swing.JFrame {
 
         archivo.setCurrentDirectory(workingDirectory);
 
-        FileNameExtensionFilter filtroTxt = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
-        archivo.setFileFilter(filtroTxt);
+//        FileNameExtensionFilter filtroTxt = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
+//        archivo.setFileFilter(filtroTxt);
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
-        int returnVal = archivo.showSaveDialog(GUI_START.this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            String filePath = archivo.getSelectedFile().getAbsolutePath();
-            try {
 
-                archivoActual = new File(filePath);
+        if ((this.Txt_categoria.getText()).isBlank() != true) {
+            
+            
+           
+            int returnVal = archivo.showSaveDialog(GUI_START.this);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                String filePath = archivo.getSelectedFile().getAbsolutePath();
+                try {
 
-                if (!archivoActual.exists()) {
-                    FileWriter tempFile = new FileWriter(filePath);
-                    System.out.println("Archivo creado: " + archivoActual.getName());
-                    tempFile.write(TxtA_contentNota.getText());
-                    tempFile.close();
-                } else {
-                    System.out.println("Archivo ya existente.");
+                    archivoActual = new File(filePath);
+
+                    if (!archivoActual.exists()) {
+//                    FileWriter tempFile = new FileWriter(filePath);
+//                    System.out.println("Archivo creado: " + archivoActual.getName());
+//                    tempFile.write(TxtA_contentNota.getText());
+//                    tempFile.close();
+                        String categoria = " ";
+                        Nota n = new Nota(archivoActual.getName(), Txt_categoria.getText(), TxtA_contentNota.getText(), url);
+                        FileOutputStream fileOutputStream = new FileOutputStream(filePath + ".dat");
+                        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+                        objectOutputStream.writeObject(n);
+
+                        objectOutputStream.close();
+                        fileOutputStream.close();
+
+                    } else {
+                        System.out.println("Archivo ya existente.");
+                    }
+
+                } catch (IOException err) {
+                    System.out.println("An error occurred.");
+                    err.printStackTrace();
                 }
-
-            } catch (IOException err) {
-                System.out.println("An error occurred.");
-                err.printStackTrace();
+            } else {
+                System.out.println("Error");
             }
-        } else {
-            System.out.println("Error");
+        }else{
+            JOptionPane.showMessageDialog(null, "Esta vacio el campo categoria.");
         }
     }//GEN-LAST:event_BtnGuardarNotaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.TxtA_contentNota.setText(" ");
+        this.Txt_categoria.setText(" ");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void Txt_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_categoriaActionPerformed
@@ -909,9 +914,7 @@ public class GUI_START extends javax.swing.JFrame {
     private javax.swing.JLabel empecemos;
     private javax.swing.JButton entrar;
     private javax.swing.JPanel iniciar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

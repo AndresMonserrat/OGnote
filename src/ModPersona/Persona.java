@@ -8,7 +8,21 @@ package ModPersona;
  *
  * @author deavi
  */
-public class Persona {
+ class Persona {
     private String nombre;
+
+    public Persona() {
+    }
+
+    public Persona(String nombre) {
+        this.nombre = nombre;
+    }
+    
+   
+    public String toString(){
+        
+        return null;
+        
+    }
     
 } 

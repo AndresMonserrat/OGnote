@@ -37,12 +37,12 @@ class ListaDobleEnlazada {
     }
 
     // Método para imprimir la lista hacia adelante
-    public void imprimir() {
-        Nodo actual = inicio;
-        while (actual != null) {
-            actual.dato.imprimir();
-            actual = actual.siguiente;
-        }
-        System.out.println();
-    }
+//    public void imprimir() {
+//        Nodo actual = inicio;
+//        while (actual != null) {
+//            actual.dato.imprimir();
+//            actual = actual.siguiente;
+//        }
+//        System.out.println();
+//    }
 }
