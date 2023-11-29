@@ -45,6 +45,13 @@ public class GUI_START extends javax.swing.JFrame {
         panel_opciones.setVisible(false);
         panel_final.setVisible(false);
         SQLConectar.SQL_Conectar();
+        
+        TxtA_contentNota.setVisible(false);
+        Txt_categoria.setVisible(false);
+        BtnAbrirNota1.setVisible(false);
+        BtnGuardarNota.setVisible(false);
+        BtnFiltrar.setVisible(false);
+        jButton2.setVisible(false);
     }
 
     /**
@@ -108,6 +115,7 @@ public class GUI_START extends javax.swing.JFrame {
         panel_user = new javax.swing.JPanel();
         panel_cal = new javax.swing.JPanel();
         panel_opciones = new javax.swing.JPanel();
+        menuoscuro = new javax.swing.JButton();
         panel_final = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
 
@@ -217,12 +225,12 @@ public class GUI_START extends javax.swing.JFrame {
         });
         menu.add(opcion_settings, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 160, 40));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Ogicon.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ño.png"))); // NOI18N
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        menu.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, -10, 210, 120));
+        menu.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, -10, 80, 120));
 
         up_panel.add(menu);
-        menu.setBounds(0, 0, 210, 510);
+        menu.setBounds(0, 0, 220, 510);
 
         iniciar.setPreferredSize(new java.awt.Dimension(400, 0));
         iniciar.setLayout(null);
@@ -439,10 +447,10 @@ public class GUI_START extends javax.swing.JFrame {
         jLabel6.setBounds(110, 150, 300, 179);
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Ogicon.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ño.png"))); // NOI18N
         jLabel12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         deco.add(jLabel12);
-        jLabel12.setBounds(-100, -70, 280, 230);
+        jLabel12.setBounds(20, 10, 80, 90);
 
         up_panel.add(deco);
         deco.setBounds(400, 0, 530, 510);
@@ -593,15 +601,28 @@ public class GUI_START extends javax.swing.JFrame {
 
         panel_opciones.setBackground(new java.awt.Color(255, 204, 204));
 
+        menuoscuro.setText("MODO OSCURO");
+        menuoscuro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuoscuroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel_opcionesLayout = new javax.swing.GroupLayout(panel_opciones);
         panel_opciones.setLayout(panel_opcionesLayout);
         panel_opcionesLayout.setHorizontalGroup(
             panel_opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 709, Short.MAX_VALUE)
+            .addGroup(panel_opcionesLayout.createSequentialGroup()
+                .addGap(285, 285, 285)
+                .addComponent(menuoscuro, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(291, Short.MAX_VALUE))
         );
         panel_opcionesLayout.setVerticalGroup(
             panel_opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
+            .addGroup(panel_opcionesLayout.createSequentialGroup()
+                .addGap(241, 241, 241)
+                .addComponent(menuoscuro)
+                .addContainerGap(256, Short.MAX_VALUE))
         );
 
         PanelAbrirNotas.add(panel_opciones, "card3");
@@ -728,6 +749,13 @@ public class GUI_START extends javax.swing.JFrame {
         panel_cal.setVisible(false);
         panel_opciones.setVisible(false);
         panel_final.setVisible(false);
+        
+        TxtA_contentNota.setVisible(true);
+        Txt_categoria.setVisible(true);
+        BtnAbrirNota1.setVisible(true);
+        BtnGuardarNota.setVisible(true);
+        BtnFiltrar.setVisible(true);
+        jButton2.setVisible(true);
     }//GEN-LAST:event_BtnAbrirNotasActionPerformed
 
     private void opcion_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion_userActionPerformed
@@ -897,6 +925,10 @@ public class GUI_START extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Txt_categoriaActionPerformed
 
+    private void menuoscuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuoscuroActionPerformed
+        
+    }//GEN-LAST:event_menuoscuroActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAbrirNota1;
@@ -939,6 +971,7 @@ public class GUI_START extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel menu;
+    private javax.swing.JButton menuoscuro;
     private javax.swing.JButton opcion_cal;
     private javax.swing.JButton opcion_final;
     private javax.swing.JButton opcion_settings;
